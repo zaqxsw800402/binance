@@ -1,0 +1,11 @@
+/.idea
+/.vscode
+/.vendor
+*.yaml
+*.log
+vendor
+__debug_bin.exe
+.DS_Store
+grafana.db
+__default__.tmpl
+/docker

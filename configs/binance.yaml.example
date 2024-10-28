@@ -1,0 +1,10 @@
+BINANCE:
+  API_KEY: api_key
+  SECRET_KEY: secret_key
+
+OPENAI:
+  API_KEY: api_key
+
+TELEGRAM:
+  TOKEN: token
+  CHAT_ID: chat_id
