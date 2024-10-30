@@ -31,38 +31,10 @@ func NewBinanceHttp(cfg config.Binance) *BinanceHttp {
 	}
 }
 
-func (b *BinanceHttp) GetOrderBook(ctx context.Context, symbol string) ([]byte, error) {
-	res, err := b.client.NewDepthService().Symbol(symbol).Limit(limit).Do(ctx)
-	if err != nil {
-		return nil, fmt.Errorf("NewDepthService err: %w", err)
-	}
-
-	bytes, err := json.Marshal(res)
-	if err != nil {
-		return nil, fmt.Errorf("json.Marshal err: %w", err)
-	}
-
-	return bytes, nil
-}
-
 func (b *BinanceHttp) GetKLines(ctx context.Context, symbol, timeInterval string) ([]byte, error) {
 	res, err := b.client.NewKlinesService().Symbol(symbol).Interval(timeInterval).Limit(limit).Do(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("NewKlinesService err: %w", err)
-	}
-
-	bytes, err := json.Marshal(res)
-	if err != nil {
-		return nil, fmt.Errorf("json.Marshal err: %w", err)
-	}
-
-	return bytes, nil
-}
-
-func (b *BinanceHttp) GetTrades(ctx context.Context, symbol string) ([]byte, error) {
-	res, err := b.client.NewHistoricalTradesService().Symbol(symbol).Limit(limit).Do(ctx)
-	if err != nil {
-		return nil, fmt.Errorf("NewHistoricalTradesService err: %w", err)
 	}
 
 	bytes, err := json.Marshal(res)
@@ -102,7 +74,7 @@ func (b *BinanceHttp) GetPremiumIndex(ctx context.Context, symbol string) ([]byt
 }
 
 func (b *BinanceHttp) GetAggTrades(ctx context.Context, symbol string) ([]byte, error) {
-	res, err := b.client.NewAggTradesService().Symbol(symbol).Limit(3 * limit).Do(ctx)
+	res, err := b.client.NewAggTradesService().Symbol(symbol).Limit(6 * limit).Do(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("NewAggTradesServiceerr: %w", err)
 	}
@@ -184,4 +156,32 @@ func (b *BinanceHttp) CheckSymbol(ctx context.Context, symbol string) (bool, err
 	}
 
 	return true, nil
+}
+
+func (b *BinanceHttp) GetTrades(ctx context.Context, symbol string) ([]byte, error) {
+	res, err := b.client.NewHistoricalTradesService().Symbol(symbol).Limit(limit).Do(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("NewHistoricalTradesService err: %w", err)
+	}
+
+	bytes, err := json.Marshal(res)
+	if err != nil {
+		return nil, fmt.Errorf("json.Marshal err: %w", err)
+	}
+
+	return bytes, nil
+}
+
+func (b *BinanceHttp) GetOrderBook(ctx context.Context, symbol string) ([]byte, error) {
+	res, err := b.client.NewDepthService().Symbol(symbol).Limit(limit).Do(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("NewDepthService err: %w", err)
+	}
+
+	bytes, err := json.Marshal(res)
+	if err != nil {
+		return nil, fmt.Errorf("json.Marshal err: %w", err)
+	}
+
+	return bytes, nil
 }
