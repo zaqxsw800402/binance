@@ -29,7 +29,7 @@ func (s *TestBinanceService) SetupSuite() {
 
 func (s *TestBinanceService) TestGetData() {
 	ctx := context.Background()
-	symbol := "WIFUSDT"
+	symbol := "AAVEUSDT"
 	data, err := s.service.GetData(ctx, symbol)
 	s.Require().NoError(err)
 	s.T().Logf("data: %s", data)

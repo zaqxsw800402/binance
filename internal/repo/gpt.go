@@ -67,7 +67,7 @@ func (c *ChatGpt) Chat(ctx context.Context, prompts *model.AllPrompt) (string, e
 			"\n若您需要其他數據，請列出需求，以便我提供更準確的預測。",
 	})
 	res, err := c.client.CreateChatCompletion(ctx, openai.ChatCompletionRequest{
-		Model:       openai.GPT4o,
+		Model:       openai.GPT4oMini,
 		Messages:    request,
 		Temperature: 0.5,
 		//TopP:        0.5,
