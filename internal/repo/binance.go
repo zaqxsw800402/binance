@@ -14,7 +14,7 @@ import (
 
 const (
 	limit  = 50
-	period = "1h"
+	period = "4h"
 )
 
 type IBinance interface {
