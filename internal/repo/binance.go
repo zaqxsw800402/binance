@@ -32,7 +32,7 @@ func NewBinanceHttp(cfg config.Binance) *BinanceHttp {
 }
 
 func (b *BinanceHttp) GetKLines(ctx context.Context, symbol, timeInterval string) ([]byte, error) {
-	res, err := b.client.NewKlinesService().Symbol(symbol).Interval(timeInterval).Limit(limit).Do(ctx)
+	res, err := b.client.NewKlinesService().Symbol(symbol).Interval(timeInterval).Limit(2 * limit).Do(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("NewKlinesService err: %w", err)
 	}
