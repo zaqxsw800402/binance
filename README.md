@@ -1,0 +1,2 @@
+串接binance api讀取市場訊息
+使用Telegram查詢輸入幣種的的交易策略
